@@ -1,0 +1,18 @@
+### install
+conda install -c bioconda plncpro 
+conda create -n cpc2 python=3
+conda install biopython=1.70
+wget https://github.com/biocoder/CPC2/archive/refs/heads/master.zip
+unzip master.zip
+cd ~/CPC2-master/libs/libsvm/libsvm-3.18
+make clean && make
+
+
+### CPC2
+### http://cpc2.gao-lab.org/download.php
+python ~/softwares/CPC2-beta/bin/CPC2.py -i transcript.fa -o ta_cpc2.out --ORF
+
+### plncpro
+### https://github.com/urmi-21/PLncPRO
+plncpro build -p coding.fa -n lnc.fa -o . -m quinoa.model -d /ssd/db/protein/uniprot_sprot -t 200
+plncpro predict -i transcript.fa -o . -p plnc -t 200 -d /ssd/db/protein/uniprot_sprot -m nitab.model
