@@ -3,7 +3,7 @@ library(reshape2)
 library(stringr)
 
 options(stringsAsFactors = FALSE)
-type = "unsigned"
+type = "signed"
 corType = "bicor"
 corFnc = ifelse(corType=="bicor", cor, bicor)
 
@@ -196,8 +196,6 @@ if (corType=="pearson") {
   geneTraitCor = as.data.frame(geneTraitCorA$bicor)
   geneTraitP   = as.data.frame(geneTraitCorA$p)
 }
-write.table(geneTraitCor,file="geneTraitCor.txt",sep="\t")
-write.table(geneTraitP,file="geneTraitP.txt",sep="\t")
 
 
 ## Warning in bicor(x, y, use = use, ...): bicor: zero MAD in variable 'y'.
@@ -220,8 +218,6 @@ verboseScatterplot(abs(geneModuleMembership[moduleGenes, module_column]),
                    ylab = paste("Gene significance for", pheno),
                    main = paste("Module membership vs. gene significance\n"),
                    cex.main = 1.2, cex.lab = 1.2, cex.axis = 1.2, col = module)
-
-TOM = TOMsimilarityFromExpr(dataExpr, power = power,corType = "bicor",networkType = "unsigned",nThreads=100)
 
 
 probes = colnames(dataExpr)
@@ -251,9 +247,8 @@ cyt = exportNetworkToCytoscape(modTOM,
 #Hub gene screening
 #Hub genes (Membership)
 datKME=signedKME(dataExpr, MEs_col)
-write.table(datKME, "kME_MM_test.txt",sep="\t")
-
 HubGenes <- chooseTopHubInEachModule(datExpr,moduleColors)
+write.table(datKME, "kME_MM_test.txt",sep="\t")
 write.table (HubGenes,file = "HubGenes_of_each_module.xls",quote=F,sep='\t')
 
 
