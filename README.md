@@ -1,4 +1,4 @@
-# LncRNA_KUE_scripts
+# LncRNA_KUE
 Scripts for lncRNA prediction, quantification, differential expressed analysis, and coexpression network construction
 
 
