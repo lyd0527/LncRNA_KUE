@@ -14,5 +14,4 @@ python ~/softwares/CPC2-beta/bin/CPC2.py -i transcript.fa -o ta_cpc2.out --ORF
 
 ### plncpro
 ### https://github.com/urmi-21/PLncPRO
-plncpro build -p coding.fa -n lnc.fa -o . -m nitab.model -d /ssd/db/protein/uniprot_sprot -t 200
 plncpro predict -i transcript.fa -o . -p plnc -t 200 -d /ssd/db/protein/uniprot_sprot -m nitab.model
