@@ -244,13 +244,5 @@ cyt = exportNetworkToCytoscape(modTOM,
                                nodeNames = modProbes, nodeAttr = moduleColors[inModule])
 
 
-#Hub gene screening
-#Hub genes (Membership)
-datKME = signedKME(dataExpr, MEs_col)
-FilterGenes = abs(datKME$MM)>.8
-table(FilterGenes)
-hubgene <- dimnames(data.frame(datExpr))[[2]][FilterGenes]
-write.table (hubgene,file = "HubGenes_of_each_module.xls",quote=F,sep='\t')
-
 
 
